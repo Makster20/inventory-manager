@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    <h1 class="text-5xl my-10 font-bold">Categories</h1>
+
+    <div id="cards" class="flex gap-8 flex-wrap mx-5">
+
+        <!-- All Categories -->
+        {% for category in categorys %}
+        <a href="{% url 'category-items' category.id %}">
+            <div id="card-category" style="width: 250px; height: 270px;" class="p-4 pb-16 rounded-md border-4 border-teal-950 flex flex-col items-center bg-teal-50 shadow-sm shadow-slate-500">
+                <h1 class="text-3xl font-semibold my-4">{{category.name}}</h1>
+                <img class="rounded-md" src="{{category.image.url}}" alt="" >
+            </div>
+        </a>
+        {% endfor %}
+
+        {% if user.groups.all.0.name == 'admins' %}
+        <!-- Make new category -->
+        <a href="{% url 'new-category' %}">
+            <div style="width: 250px; height: 270px;" id="card-new" class="p-4  rounded-md border-4 border-teal-950 flex flex-col items-center bg-teal-900 shadow-sm shadow-slate-500">
+                <h1 class="text-3xl font-semibold my-4 text-teal-50">New Category</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f0fdfa" class="mb-1">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
+                </svg>
+            </div>
+        </a>
+        {% endif %}
+    </div>
+
+{% endblock %}

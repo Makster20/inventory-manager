@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<h1 class="text-5xl my-10 font-bold">Add Item in {{category.name}}</h1>
+
+<form action="" method="POST" class="mt-10 flex flex-col justify-center">
+    {% csrf_token %}
+    <div class="flex mb-5">
+        <label for="">Name:</label>
+        {{form.name}}
+    </div>
+    <div class="flex mb-5">
+        <label for="">Price:</label>
+        {{form.price}}
+    </div>
+    <div class="flex mb-5">
+        <label for="">Quantity:</label>
+        {{form.quantity}}
+    </div>
+    <button type="submit" class="self-center bg-teal-900 p-3 font-semibold text-teal-50 rounded-lg">Add Item</button>
+</form>
+
+
+
+{% endblock %}
